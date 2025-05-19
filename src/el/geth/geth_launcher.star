@@ -222,8 +222,13 @@ def get_config(
         "--metrics",
         "--metrics.addr=0.0.0.0",
         "--metrics.port={0}".format(METRICS_PORT_NUM),
-        "--discovery.port={0}".format(discovery_port),
-        "--port={0}".format(discovery_port),
+        "--discovery.port={0}".format(discovery_port_tcp),
+        "--port={0}".format(discovery_port_tcp),
+        "{0}".format(
+            "--miner.gasprice=1"
+            if network_params.network == constants.NETWORK_NAME.kurtosis
+            else ""
+        ),
     ]
 
     if BUILDER_IMAGE_STR in participant.el_image:

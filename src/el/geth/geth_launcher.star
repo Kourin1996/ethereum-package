@@ -223,8 +223,7 @@ def get_config(
         "--metrics.addr=0.0.0.0",
         "--metrics.port={0}".format(METRICS_PORT_NUM),
         "--discovery.port={0}".format(discovery_port),
-        "--port={0}".format(discovery_port),
-        "--miner.gasprice=1"
+        "--port={0}".format(discovery_port)
     ]
 
     if BUILDER_IMAGE_STR in participant.el_image:
@@ -277,7 +276,14 @@ def get_config(
         # this is a repeated<proto type>, we convert it into Starlark
         cmd.extend([param for param in participant.el_extra_params])
 
+
+
     cmd_str = " ".join(cmd)
+
+    plan.print("\n\n!!!! cmd !!!!\n\n")
+    plan.print(cmd_str)
+    plan.print("\n\n\n")
+
     if launcher.network not in constants.PUBLIC_NETWORKS:
         subcommand_strs = [
             init_datadir_cmd_str,
